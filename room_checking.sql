@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 13, 2017 at 02:53 PM
+-- Generation Time: Jan 13, 2017 at 05:45 PM
 -- Server version: 5.6.30
 -- PHP Version: 7.0.6
 
@@ -65,14 +65,18 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   `room_id` int(11) NOT NULL,
   `name` varchar(40) NOT NULL,
   `category_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rooms`
 --
 
 INSERT INTO `rooms` (`room_id`, `name`, `category_id`) VALUES
-(1, 'Library', 3);
+(2, 'Chess Room', 4),
+(7, 'FootBall', 4),
+(10, 'Cross Origin', 2),
+(11, 'Gym', 5),
+(12, 'Gisting', 2);
 
 -- --------------------------------------------------------
 
@@ -134,7 +138,7 @@ ALTER TABLE `checked_room`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `users`
 --
