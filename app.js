@@ -8,6 +8,8 @@ var http = require('http');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var accounts = require('./routes/account');
+var admin = require('./routes/admin');
+var session = require('express-session');
 
 var app = express();
 
@@ -24,9 +26,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+	secret: 'faeb4453e5d14fe6f6d04637f78077c76c73d1b4',
+	proxy: true,
+	resave: true,
+	saveUninitialized: false,
+	// cookie: { secure: true },
+	})
+);
+
 app.use('/', index);
 app.use('/users', users);
 app.use('/account', accounts);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

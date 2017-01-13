@@ -1,0 +1,17 @@
+
+
+
+<form class="" action="add-room" method="post">
+  <input type="text" name="room_name" value="">
+  <select class="" name="category_id">
+    <% data.forEach(function(category) { %>
+      <option value="<%= category.category_id %>"><%= category.name %></option>
+        <% }); %>
+  </select>
+  <button type="submit" name="button">Add</button>
+</form>
+
+<h2>Get All Rooms</h2>
+<% data.forEach(function(category) { %>
+  <option value="<%= category.category_id %>"><%= category.name %></option>
+    <% }); %>
