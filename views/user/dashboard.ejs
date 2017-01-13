@@ -1,125 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Room Check App</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/my_file.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Admin</title>
 </head>
-
 <body>
-  <!-- Header!-->
+
+<nav class="navbar navbar-default">
   <div class="container-fluid">
-    <div class="well row" >
-        <div class="col-md-8">
-            <span class=""><h3 class="text-blue"><b>R</b>oom <b>C</b>hecking <b>A</b>pp</h3></span>
-        </div>
-        <div class="col-md-4 list-inline logout">
-          <li><span class="text-primary">Welcome User</span></li>
-          <li><a href="#">SIGN OUT</a></li>
-        </div>
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#" class="h1"><b>Room Checking App</b></a>
     </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Welcome</a></li>
+        <li><a href="#" class="user_home">Dashboard</a></li>
+
+        <li><a href="add-rooms" class="my-rooms">My Rooms</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+
+  <div class="alert alert-success book_room_success" style="display:none">
+    <p>
+      Room Booked Successfully
+    </p>
+    <button type="button" name="button" class="btn btn-sm btn-info close_add_room_info">Close</button>
   </div>
+<div class="my_rooms_data">
 
+</div>
+<div class="row add-room-selector">
 
-  <div class="container-fluid">
-      <div class="row">
-          <div class="col-md-2">
-          </div>
-
-          <div class="col-md-8">
-
-              <form method="" action="">
-                <div class="form-group">
-                  <label for="select_room"><span class="text-primary"><h1>Search For a Room: </h1></span></label>
-                     <select id="select_room" class="form-control input-lg" name="search_room">
-                         <option value="">Room1</option>
-                         <option value="">Room2</option>
-                         <option value="">Room2</option>
-                     </select>
-               </div>
-             </form>
-          </div>
-
-          <div class="col-md-2">
-          </div>
+	<h3 class="text-primary">Please select Room Category?</h3>
+  <div class="row">
+    <select class="input-lg col-md-offset-2 col-md-8 categories" name="category_id">
+      <div class="form-group">
+      <% data.forEach(function(category) { %>
+        <option value="<%= category.category_id %>"><%= category.name %></option>
+          <% }); %>
       </div>
+    </select>
   </div>
-
-  <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2">
-
-        </div>
-
-        <div class="col-md-8">
-            <div class="">
-              <div class="panel panel-primary">
-                  <div class="panel-heading"><span class=" success"><h3>Available Rooms:</h3></span></div>
-                  <div class="panel-body">
-                    <!-- Stattic item 1-->
-                      <div class="well">
-                        <table class="table">
-                              <tr class="">
-                                  <td>Room Name:</td>
-                                  <td>Meeting</td>
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                <td>Room number:</td>
-                                <td>Room 0101</td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td>Room Category:</td>
-                                <td>Meeting</td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                  <td><label for="check_room"><span class="text-primary">Book Room: </span></label></td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <form method="" action="">
-                                      <div class="form-group">
-                                           <input type="checkbox" id="check_room" class="form-control input-lg" name="check_room"/>
-                                      </div>
-                                   </form>
-                                </td>
-                              </tr
-                        </table>
-                      </div>
-
-                      <!-- Stattic item 2-->
-                      <div class="well">
-                        <table class="table">
-                              <tr class="">
-                                  <td>Room Name:</td>
-                                  <td>Meeting</td>
-                              </tr>
-                              <tr>
-                                <td>Room number:</td>
-                                <td>Room 0101</td>
-                              </tr>
-                              <tr>
-                                <td>Room Category:</td>
-                                <td>Meeting</td>
-                              </tr>
-                        </table>
-                      </div>
-
-                  </div>
-              </div>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-
-        </div>
-    </div>
-  </div>
+</div>
+<br><br>
 
 
+<div class="load_data">
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="js/jquery.js"></script>
+<script type="text/javascript">
+$( ".categories" ).change(function() {
+  $( ".load_data" ).html('');
+  var value = $('.categories').val();
+  $.get( "get-rooms/"+value, function( data ) {
+      $( ".load_data" ).html( data );
+    });
+});
+
+$(".my-rooms").click(function(e){
+  e.preventDefault();
+    $('.add-room-selector').hide();
+    $('.add_new_room').show('slow');
+    $.get( "my-rooms/", function( data ) {
+      $( ".my_rooms_data" ).html( data );
+    });
+
+})
+
+$(".user_home").click(function(e){
+  e.preventDefault();
+    $('.my_rooms_data').hide();
+    $('.add-room-selector').show('slow');
+
+})
+
+var add_new_room = function(){
+  var room_name = $('.add_room_name').val();
+  var add_category_id = $('.add_category_id').val();
+  $.post( "add-room", { room_name: room_name, category_id: add_category_id })
+    .done(function( data ) {
+      $('.add_room_name').val(' ');
+        $('.add_room_success').show('slow');
+    });
+}
+
+$('.close_add_room_info').click(function(e){
+  e.preventDefault();
+  $('.add_room_success').hide('slow');
+})
+
+var bookRoom = function(room_id){
+  $.get( "book-rooms/"+room_id, function() {
+    })
+    .done(function() {
+      $('.book_room_success').show('slow');
+        setTimeout(function(){
+          window.location.reload();
+        }, 4000);
+    })
+}
+
+</script>
+<% include ../partials/footer %>
+
+</body>
 </html>

@@ -1,6 +1,117 @@
-<% include ../partials/head %>
 
-<body>
-  Welcome to Login
-  <%= title %>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Room Checker Login</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  </head>
+<style media="screen">
+body {
+padding-top: 40px;
+padding-bottom: 40px;
+background-color: #eee;
+}
+
+.form-signin {
+max-width: 330px;
+padding: 15px;
+margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+margin-bottom: 10px;
+}
+.form-signin .checkbox {
+font-weight: normal;
+}
+.form-signin .form-control {
+position: relative;
+height: auto;
+-webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+        box-sizing: border-box;
+padding: 10px;
+font-size: 16px;
+}
+.form-signin .form-control:focus {
+z-index: 2;
+}
+.form-signin input[type="email"] {
+margin-bottom: -1px;
+border-bottom-right-radius: 0;
+border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+margin-bottom: 10px;
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+}
+</style>
+  <body>
+
+    <div class="container">
+
+      <div class="alert alert-danger add_room_success" style="display:none">
+        <p>
+          Incorrect Username Or Password. Please Try Again
+        </p>
+        <button type="button" name="button" class="btn btn-sm btn-info close_add_room_info">Close</button>
+      </div>
+
+      <form class="form-signin" action="#" method="post">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Username</label>
+        <input type="text" id="inputEmail" name="username" class="form-control username" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control password" placeholder="Password" required>
+        <!-- <button class="btn btn-primary pull-left" type="submit">Register</button> -->
+        <button class="btn btn-primary pull-right user_login" type="submit">Login</button>
+      </form>
+
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <% include ../partials/footer %>
+
+    <script type="text/javascript">
+    $('.user_login').click(function(e){
+      e.preventDefault();
+      var username = $('.username').val();
+      var password = $('.password').val();
+      $.post( "login", { "username": username, "password": password })
+        .done(function( data ) {
+          if (data.status) {
+            if (data.role) {
+              window.location.replace("/admin/home");
+            }
+            else if(!data.role) {
+              window.location.replace("/users/home");
+            }
+          }
+          else {
+            $('.add_room_success').show('slow');
+
+            $('.close_add_room_info').click(function(e){
+              e.preventDefault();
+              $('.add_room_success').hide('slow');
+            })
+
+          }
+    })
+  })
+
+    </script>
+
+  </body>
+</html>

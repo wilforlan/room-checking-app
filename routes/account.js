@@ -4,22 +4,30 @@ var AM = require('./../models/account');
 var GM = require('./../models/general');
 
 
-// router.use(function(req, res, next){
-//   if (req.cookies.user == undefined || req.cookies.pass == undefined){
-//     res.json({
-//       status: false,
-//       message: 'Please Login First'
-//     });
-//   }
-//   else {
-//     next();
-//   }
-// })
 
 /* GET home page. */
 router.get('/login', function(req, res, next) {
   res.render('account/login', { title: 'Login' });
 });
+
+// router.post('/login', function(req, res, next) {
+//   res.render('account/login', { title: 'Login' });
+// });
+router.post('/login', function(req, res){
+    AM.manualLogin(req.body.username, req.body.password, function(e, o){
+      if (e.status) {
+        var result = e.data;
+        res.cookie('username', result.username, { maxAge: 900000 });
+        res.cookie('password', result.password, { maxAge: 900000 });
+        res.cookie('name', result.name, { maxAge: 900000 });
+        req.session.user = result;
+        res.send({status: true, role: result.role});
+      }
+      else {
+        res.send({status: false})
+      }
+    });
+  });
 
 router.get('/home', function(req, res, next) {
   res.render('user/dashboard', { title: 'Login' });

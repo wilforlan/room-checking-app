@@ -4,6 +4,20 @@ var AM = require('./../models/account');
 var GM = require('./../models/general');
 
 
+router.use(function(req, res, next){
+  if (typeof req.session.user == 'undefined') {
+    res.redirect('/account/login');
+  }
+  else {
+    if (req.session.user.role === 1) {
+    next();
+    }
+    else {
+      res.redirect('/account/login');
+    }
+  }
+})
+
 router.get('/home', function(req, res, next) {
   GM.GetAllCategory(function(category){
       res.render('admin/home',category);
