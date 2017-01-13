@@ -21,10 +21,11 @@ exports.GetAllRooms = function(callback)
 	})
 }
 
-exports.GetRoomsById = function(room_id, callback)
-{
 
-	db.query("SELECT rooms.*, categories.name as 	category_name FROM rooms LEFT JOIN categories ON 	categories.category_id = rooms.category_id WHERE rooms.category_id = ?",room_id,  function(err, result, fields){
+
+exports.GetRoomsById = function(cat_id, callback)
+{
+	db.query("SELECT rooms.*, categories.name as 	category_name FROM rooms LEFT JOIN categories ON 	categories.category_id = rooms.category_id WHERE rooms.category_id = ?",cat_id,  function(err, result, fields){
 		if (err) throw err;
 		if (result.length){
 			callback({
@@ -70,6 +71,19 @@ exports.AddNewRoom = function(newData, callback)
         if (err) throw err;
         if (result.affectedRows) {
           callback({status: true});
+        }
+    });
+}
+exports.DeleteRoomsById = function(room_id, callback)
+{
+
+  db.query('DELETE FROM rooms WHERE room_id = ?', room_id, function(err, result, data) {
+        if (err) throw err;
+        if (result.affectedRows) {
+          callback({status: true});
+        }
+        else {
+          callback({status: false});
         }
     });
 }

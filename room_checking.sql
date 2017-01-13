@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 13, 2017 at 01:17 PM
+-- Generation Time: Jan 13, 2017 at 02:53 PM
 -- Server version: 5.6.30
 -- PHP Version: 7.0.6
 
@@ -30,7 +30,18 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `category_id` int(11) NOT NULL,
   `name` varchar(40) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`category_id`, `name`, `created_at`) VALUES
+(1, 'Meetings', '2017-01-13 14:43:39'),
+(2, 'Games', '2017-01-13 14:43:39'),
+(3, 'Quiet-Time', '2017-01-13 14:44:01'),
+(4, 'Learning', '2017-01-13 14:44:01'),
+(5, 'Working', '2017-01-13 14:44:09');
 
 -- --------------------------------------------------------
 
@@ -54,7 +65,14 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   `room_id` int(11) NOT NULL,
   `name` varchar(40) NOT NULL,
   `category_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rooms`
+--
+
+INSERT INTO `rooms` (`room_id`, `name`, `category_id`) VALUES
+(1, 'Library', 3);
 
 -- --------------------------------------------------------
 
@@ -106,7 +124,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `checked_room`
 --
@@ -116,7 +134,7 @@ ALTER TABLE `checked_room`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --

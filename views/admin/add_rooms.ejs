@@ -1,0 +1,30 @@
+
+<div class="container">
+
+<h3 class="text-primary text-center">Add Rooms</h3>
+	<div class="row">
+		<div class="form-group col-md-offset-2 col-md-8">
+			<label for="name">Name</label>
+			<input type="text" placeholder="Enter Name" class="form-control add_room_name" >
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group col-md-offset-2 col-md-8" id="categorydiv">
+			<label for="category">Category</label>
+
+			<select class="selectpicker col-md-12 form-control add_category_id" id="category">
+        <div class="form-group">
+        <% data.forEach(function(category) { %>
+          <option value="<%= category.category_id %>"><%= category.name %></option>
+            <% }); %>
+        </div>
+      </select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group col-md-offset-2 col-md-8" id="addbuttondiv">
+			<button class="btn btn-primary btn-block " onclick="add_new_room()">Add</button>
+		</div>
+	</div>
+
+</div>

@@ -29,65 +29,97 @@
 
       <ul class="nav navbar-nav navbar-right">
       	 <li><a href="#">Welcome Admin</a></li>
-        <li><a href="add-rooms">Add Rooms</a></li>
-        <li><a href="#">Remove Rooms</a></li>
-        <li><a href="rooms">View Rooms</a></li>
+        <li><a href="add-rooms" class="add-room">Add Rooms</a></li>
+        <li><a href="rooms" class="view-room">View Rooms</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
 <div class="container">
-<div class="row">
+  <div class="alert alert-success add_room_success" style="display:none">
+    <p>
+      Room Added Successfully
+    </p>
+    <button type="button" name="button" class="btn btn-sm btn-info close_add_room_info">Close</button>
+  </div>
+
+  <div class="add_new_room">
+
+  </div>
+
+<div class="row add-room-selector">
 
 	<h3 class="text-primary">Please select Room Category?</h3>
-	<select class="input-lg col-md-offset-2 col-md-8">
-		<div class="form-group">
-			<option value="meetings">Meetings</option>
-	  		<option value="games">Games</option>
-	  		<option value="quiet">Quiet Time</option>
-	  		<option value="learning">Learning</option>
-	  		<option value="working">Working</option>
-		</div>
-
-	</select>
+  <div class="row">
+    <select class="input-lg col-md-offset-2 col-md-8 categories" name="category_id">
+      <div class="form-group">
+      <% data.forEach(function(category) { %>
+        <option value="<%= category.category_id %>"><%= category.name %></option>
+          <% }); %>
+      </div>
+    </select>
+  </div>
 </div>
-<div class="row">
-	<table class="table table-striped" id="roomlist">
-		<tr>
-			<th>S/No</th>
-			<th>Room Name</th>
-			<th>Availability</th>
-		</tr>
-		<tr>
-			<td>S/No</td>
-			<td>Room Name</td>
-			<td>Availability</td>
-		</tr>
-		<tr>
-			<td>S/No</td>
-			<td>Room Name</td>
-			<td>Availability</td>
-		</tr>
+<br><br>
 
-		<tr>
-			<td>S/No</td>
-			<td>Room Name</td>
-			<td>Availability</td>
-		</tr>
 
-		<tr>
-			<td>S/No</td>
-			<td>Room Name</td>
-			<td>Availability</td>
-		</tr>
-	</table>
+<div class="load_data">
 
 </div>
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="js/script.js"></script>
+<script src="js/jquery.js"></script>
+<script type="text/javascript">
+$( ".categories" ).change(function() {
+  $( ".load_data" ).html('');
+  var value = $('.categories').val();
+  $.get( "get-rooms/"+value, function( data ) {
+      $( ".load_data" ).html( data );
+    });
+});
+
+$(".add-room").click(function(e){
+  e.preventDefault();
+    $('.add-room-selector').hide();
+    $('.add_new_room').show('slow');
+  $.get( "add-room/", function( data ) {
+      $( ".add_new_room" ).html( data );
+    });
+
+})
+
+$(".view-room").click(function(e){
+  e.preventDefault();
+    $('.add_new_room').hide();
+    $('.add-room-selector').show('slow');
+
+})
+
+var add_new_room = function(){
+  var room_name = $('.add_room_name').val();
+  var add_category_id = $('.add_category_id').val();
+  $.post( "add-room", { room_name: room_name, category_id: add_category_id })
+    .done(function( data ) {
+      $('.add_room_name').val(' ');
+        $('.add_room_success').show('slow');
+    });
+
+}
+
+$('.close_add_room_info').click(function(e){
+  e.preventDefault();
+  $('.add_room_success').hide('slow');
+})
+var removeRoom = function(room_id){
+  $.get( "delete-rooms/"+room_id, function() {
+    })
+    .done(function() {
+      window.location.reload();
+    })
+}
+</script>
+<% include ../partials/footer %>
+
 </body>
 </html>

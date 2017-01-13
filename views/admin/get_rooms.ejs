@@ -1,0 +1,21 @@
+<div class="row">
+	<table class="table table-striped" id="roomlist">
+		<tr>
+			<th>S/No</th>
+			<th>Room Name</th>
+      <th>Category</th>
+      <th>Availability</th>
+      <th>Actions</th>
+		</tr>
+    <% data.forEach(function(room) { %>
+      <tr>
+  			<td>Room <%= room.room_id %></td>
+        <td><%= room.name %></td>
+        <td><%= room.category_name %></td>
+  			<td>Availability</td>
+        <td><button type="button"  onclick="removeRoom(<%= room.room_id %>)" name="button" class="btn btn-danger removeBtn">Remove</button>
+  		</tr>
+        <% }); %>
+	</table>
+
+</div>

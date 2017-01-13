@@ -6,12 +6,7 @@ var GM = require('./../models/general');
 
 router.get('/home', function(req, res, next) {
   GM.GetAllCategory(function(category){
-    res.render('admin/home',category);
-
-    // GM.GetAllRooms(function(rooms){
-    //   // var data = {rooms,category}
-    //   res.render('admin/home',rooms);
-    // });
+      res.render('admin/home',category);
   })
 });
 
@@ -21,17 +16,29 @@ router.get('/rooms', function(req, res, next) {
   // })
 });
 
-router.post('/get-rooms', function(req, res, next) {
-  GM.GetRoomsById(req.body.category_id, function(data){
-    res.render('admin/rooms', data);
+router.get('/get-rooms/:category_id', function(req, res) {
+  GM.GetRoomsById(req.params.category_id, function(data){
+    res.render('admin/get_rooms',data);
   })
 });
 
-router.get('/add-rooms', function(req, res, next) {
-  // GM.GetRoomsById(req.body.category_id, function(data){
-    res.render('admin/rooms');
-  // })
+router.get('/add-room', function(req, res) {
+  GM.GetAllCategory(function(data){
+    res.render('admin/add_rooms',data);
+  })
 });
+
+router.get('/delete-rooms/:room_id', function(req, res) {
+  GM.DeleteRoomsById(req.params.room_id, function(data){
+    if (data.status) {
+        res.send({status: true});
+    }
+    else {
+        res.send({status: false});
+    }
+  })
+});
+
 
 
 router.post('/add-room', function(req, res, next) {

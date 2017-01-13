@@ -1,6 +1,125 @@
-<% include partials/head %>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Room Check App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/my_file.css">
+</head>
+
+<body>
+  <!-- Header!-->
+  <div class="container-fluid">
+    <div class="well row" >
+        <div class="col-md-8">
+            <span class=""><h3 class="text-blue"><b>R</b>oom <b>C</b>hecking <b>A</b>pp</h3></span>
+        </div>
+        <div class="col-md-4 list-inline logout">
+          <li><span class="text-primary">Welcome User</span></li>
+          <li><a href="#">SIGN OUT</a></li>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-2">
+          </div>
+
+          <div class="col-md-8">
+
+              <form method="" action="">
+                <div class="form-group">
+                  <label for="select_room"><span class="text-primary"><h1>Search For a Room: </h1></span></label>
+                     <select id="select_room" class="form-control input-lg" name="search_room">
+                         <option value="">Room1</option>
+                         <option value="">Room2</option>
+                         <option value="">Room2</option>
+                     </select>
+               </div>
+             </form>
+          </div>
+
+          <div class="col-md-2">
+          </div>
+      </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-8">
+            <div class="">
+              <div class="panel panel-primary">
+                  <div class="panel-heading"><span class=" success"><h3>Available Rooms:</h3></span></div>
+                  <div class="panel-body">
+                    <!-- Stattic item 1-->
+                      <div class="well">
+                        <table class="table">
+                              <tr class="">
+                                  <td>Room Name:</td>
+                                  <td>Meeting</td>
+                                  <td></td>
+                              </tr>
+                              <tr>
+                                <td>Room number:</td>
+                                <td>Room 0101</td>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                <td>Room Category:</td>
+                                <td>Meeting</td>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                  <td><label for="check_room"><span class="text-primary">Book Room: </span></label></td>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <form method="" action="">
+                                      <div class="form-group">
+                                           <input type="checkbox" id="check_room" class="form-control input-lg" name="check_room"/>
+                                      </div>
+                                   </form>
+                                </td>
+                              </tr
+                        </table>
+                      </div>
+
+                      <!-- Stattic item 2-->
+                      <div class="well">
+                        <table class="table">
+                              <tr class="">
+                                  <td>Room Name:</td>
+                                  <td>Meeting</td>
+                              </tr>
+                              <tr>
+                                <td>Room number:</td>
+                                <td>Room 0101</td>
+                              </tr>
+                              <tr>
+                                <td>Room Category:</td>
+                                <td>Meeting</td>
+                              </tr>
+                        </table>
+                      </div>
+
+                  </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+  </div>
+
+
 </html>
