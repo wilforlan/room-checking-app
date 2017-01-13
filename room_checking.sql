@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 13, 2017 at 05:45 PM
+-- Generation Time: Jan 13, 2017 at 09:06 PM
 -- Server version: 5.6.30
 -- PHP Version: 7.0.6
 
@@ -53,7 +53,15 @@ CREATE TABLE IF NOT EXISTS `checked_room` (
   `checked_room_id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `checked_room`
+--
+
+INSERT INTO `checked_room` (`checked_room_id`, `room_id`, `user_id`) VALUES
+(1, 2, 2),
+(2, 7, 2);
 
 -- --------------------------------------------------------
 
@@ -90,7 +98,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(40) NOT NULL,
   `password` varchar(40) NOT NULL,
   `role` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `name`, `username`, `password`, `role`) VALUES
+(1, 'Williams Isaac', 'williams', '12345', 1),
+(2, 'Facial', 'facial', '12345', 0);
 
 --
 -- Indexes for dumped tables
@@ -133,7 +149,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `checked_room`
 --
 ALTER TABLE `checked_room`
-  MODIFY `checked_room_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `checked_room_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `rooms`
 --
@@ -143,7 +159,7 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
